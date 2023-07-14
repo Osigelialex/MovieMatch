@@ -1,0 +1,22 @@
+* {
+  font-family: cursive;
+}
+
+body {
+  min-height: 100vh;
+}
+
+footer {
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+.navbar-text {
+  color: white;
+  cursor: pointer;
+}
+
+main {
+  text-align: center;
+  padding: 2rem;
+}
