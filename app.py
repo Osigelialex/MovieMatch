@@ -35,9 +35,8 @@ def search():
             response = omdb.request(t=user_search)
             data = response.json()
             return render_template('search.html', data=data)
-        except Exception:
-            message = "Did not find anything on " + user_search 
-            return render_template('search.html', message=message)
+        except Exception as e:
+            return render_template('search.html', message=e)
         
     return render_template('search.html')
 
