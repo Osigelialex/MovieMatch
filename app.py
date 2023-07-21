@@ -7,10 +7,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# configure omdb
-omdb.set_default('apikey', os.getenv('API_KEY'))
-omdb.set_default('timeout', 5)
-
 @app.route('/', strict_slashes=False)
 def login():
     """Renders login in page to user"""
@@ -32,11 +28,12 @@ def search():
     if request.method == 'POST':
         user_search = request.form.get('search')
         try:
-            response = omdb.request(t=user_search)
+            response = omdb.request(t=user_search, apikey=os.getenv('API_KEY'))
             data = response.json()
             return render_template('search.html', data=data)
-        except Exception as e:
-            return render_template('search.html', message=e)
+        except Exception:
+            message = "Could not find anything on " + user_search
+            return render_template('search.html', message=message)
         
     return render_template('search.html')
 
