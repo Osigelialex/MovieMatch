@@ -1,4 +1,4 @@
 flask
 Gunicorn
 omdb
-dotenv
+python-dotenv
