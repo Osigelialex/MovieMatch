@@ -28,7 +28,7 @@ def search():
     if request.method == 'POST':
         user_search = request.form.get('search')
         try:
-            response = omdb.request(t=user_search, apikey=os.getenv('API_KEY'))
+            response = omdb.request(t=user_search, apikey='a7a81366')
             data = response.json()
             return render_template('search.html', data=data)
         except Exception:
