@@ -12,27 +12,29 @@ Search
 <div class="container" style="max-width: 540px;">
   <div class="row height d-flex justify-content-center align-items-center">
     <div class="col-md-8">
-      <div class="search mb-5">
-        <i class="fa fa-search"></i>
-        <input type="text" class="form-control" placeholder="Search a movie">
+      <form class='search mb-5' action="{{ url_for('search') }}" method="post">
+        <input type="text" name='search' class="form-control" placeholder="Search a movie">
         <button class="btn btn-primary">Search</button>
-      </div>      
+      </form>      
     </div>
   </div>
 
-  <div class="card mb-3" style="max-width: 540px; max-height: 300px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="../static/wednesday.jpg" class="img-fluid rounded-start" alt="..." style="min-width: 100%;height: 100%;">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
+  {% if data %}
+  <h2 class="mb-4">What we found on {{ data['Title'] }}</h2>
+  <div class="card text-white bg-dark mb-3 container" style="max-width: 25rem;">
+    <img class="card-img-top" src="{{ data['Poster'] }}" style="max-height:20rem; min-width: 100%;" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ data['Title'] }}</h5>
+      <p class="card-text">{{ data['Plot'] }}</p>
+      <p class="card-text">Rating: {{ data['Ratings'][0]['Value'] }}</p>
+      <p class="card-text">{{ data['Released'] }}</p>
     </div>
   </div>
+  {% endif %}
+
+  {% if message %}
+  <h2>{{ message }} </h2>
+  {% endif %}
+  
 </div>
 {% endblock %}

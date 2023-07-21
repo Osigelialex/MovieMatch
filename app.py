@@ -1,6 +1,15 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
+import omdb
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 app = Flask(__name__)
+
+# configure omdb
+omdb.set_default('apikey', os.getenv('API_KEY'))
+omdb.set_default('timeout', 5)
 
 @app.route('/', strict_slashes=False)
 def login():
@@ -17,9 +26,19 @@ def home():
     """show homepage of website"""
     return render_template('home.html')
 
-@app.route('/search', strict_slashes=False)
+@app.route('/search', methods=['GET', 'POST'])
 def search():
-    """show page for recent recommendations"""
+    """show page for movie search"""
+    if request.method == 'POST':
+        user_search = request.form.get('search')
+        try:
+            response = omdb.request(t=user_search)
+            data = response.json()
+            return render_template('search.html', data=data)
+        except Exception:
+            message = "Did not find anything on " + user_search 
+            return render_template('search.html', message=message)
+        
     return render_template('search.html')
 
 @app.route('/preference', strict_slashes=False)
