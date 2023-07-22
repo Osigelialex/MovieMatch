@@ -7,6 +7,8 @@ load_dotenv()
 
 app = Flask(__name__)
 
+API_KEY = os.getenv('API_KEY')
+
 @app.route('/', strict_slashes=False)
 def login():
     """Renders login in page to user"""
@@ -26,9 +28,9 @@ def home():
 def search():
     """show page for movie search"""
     if request.method == 'POST':
-        user_search = request.form.get('search')
+        user_search = request.form.get('search').strip()
         try:
-            response = omdb.request(t=user_search, apikey='a7a81366')
+            response = omdb.request(t=user_search, apikey=API_KEY)
             data = response.json()
             return render_template('search.html', data=data)
         except Exception:

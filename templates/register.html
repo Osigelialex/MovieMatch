@@ -12,7 +12,7 @@
   <main>
     <div class="container">
       <form action = "{{ url_for('home')}}" class="position-absolute top-50 start-50 translate-middle">
-        <h3 class="mb-4 text-center">Register</h3>
+        <h3 class="mb-4 text-center" style="color: rgb(243, 17, 17);">Register</h3>
         <div class="mb-3">
           <strong><label for="exampleInputEmail1" class="form-label">Email address</label></strong>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -26,8 +26,8 @@
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Email me daily Recommendations?</label>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <p class="mt-4">Already signed up? Sign in <a href="{{ url_for('login') }}">here</a></p>
+        <button type="submit" class="submit">Submit</button>
+        <p class="mt-4">Already signed up? Sign in <a href="{{ url_for('login') }}" style="color: rgb(243, 17, 17)">here</a></p>
       </form>
     </div>
   </main>

@@ -14,3 +14,13 @@ body {
 label {
   font-weight: 500;
 }
+
+.submit {
+  background-color: rgb(231, 28, 28);
+  width: 100%;
+  border: none;
+  color: white;
+  padding: 0.5em;
+  border-radius: .5rem;
+  outline: none;
+}
