@@ -2,11 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.7rem;
+}
+
+.search-input {
+  position: relative;
+}
+
+.search i {
+  position: relative;
+  right: 20;
 }
 
 .search-btn {
-  background-color: rgb(243, 17, 17);
+  background-color: transparent;
   color: white;
   padding: .3em;
   border: none;
