@@ -13,7 +13,7 @@ Search
   <div class="row height d-flex justify-content-center align-items-center">
     <div class="col-md-8">
       <form class='search mb-5' action="{{ url_for('search') }}" method="post">
-        <input type="text" name='search' placeholder="Search a movie">
+        <input type="text" name='search' autocomplete="off" placeholder="Search a movie">
         <button class="search-btn">Search</button>
       </form>      
     </div>
