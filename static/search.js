@@ -1,7 +1,9 @@
 const searchBar = document.querySelector('.search');
 const heading = document.querySelector('.heading');
+const result = document.querySelector('.result');
 
 function sendData() {
+  result.style.display = 'none';
   const value = document.querySelector('.search-input').value.trim();
   const loader = document.querySelector('.loader');
 
@@ -28,7 +30,6 @@ function sendData() {
 }
 
 function displayContent(data) {
-  const result = document.querySelector('.result');
   const cardImage = document.querySelector('.card-img-top');
   const moviePlot = document.querySelector('.plot');
   const movieRating = document.querySelector('.rating');
