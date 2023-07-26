@@ -27,17 +27,16 @@ def home():
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     """show page for movie search"""
-    if request.method == 'POST':
-        user_search = request.form.get('search').strip()
-        try:
-            response = omdb.request(t=user_search, apikey=API_KEY)
-            data = response.json()
-            return render_template('search.html', data=data)
-        except Exception:
-            message = "Could not find anything on " + user_search
-            return render_template('search.html', message=message)
-        
     return render_template('search.html')
+
+@app.route('/search_item', methods=['POST'])
+def search_item():
+    """searches for movie content"""
+    query = request.get_json()
+    item = query['value']
+    response = omdb.request(t=item, apikey=API_KEY, timeout=5)
+    data = response.json()
+    return data
 
 @app.route('/preference', strict_slashes=False)
 def preference():

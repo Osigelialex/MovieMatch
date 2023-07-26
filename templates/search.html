@@ -6,35 +6,35 @@ Search
 
 {% block styles %}
 <link rel="stylesheet" href="../static/search.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}
 
 {% block content %}
 <div class="container" style="max-width: 540px;">
   <div class="row height d-flex justify-content-center align-items-center">
     <div class="col-md-8">
-      <form class='search mb-5' action="{{ url_for('search') }}" method="post">
+      <form class='search mb-5'>
         <input type="text" class='search-input' name='search' autocomplete="off" placeholder="Search a movie">
         <button class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
       </form>      
     </div>
   </div>
 
-  {% if data %}
-  <h2 class="mb-4">What we found on <strong>{{ data['Title'] }}</strong></h2>
+  <h2 class="heading mb-4 text-center"></h2>
+  <div class="result">
   <div class="card text-white bg-dark mb-3 container" style="max-width: 25rem;">
-    <img class="card-img-top" src="{{ data['Poster'] }}" style="max-height:20rem; min-width: 100%;" alt="Card image cap">
+    <img class="card-img-top" src="" style="max-height:20rem; min-width: 100%;" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">{{ data['Title'] }}</h5>
-      <p class="card-text">{{ data['Plot'] }}</p>
-      <p class="card-text">Rating: {{ data['Ratings'][0]['Value'] }}</p>
-      <p class="card-text">{{ data['Released'] }}</p>
+      <h5 class="card-title"></h5>
+      <p class="plot card-text"></p>
+      <p class="rating card-text"></p>
+      <p class="released card-text"></p>
     </div>
   </div>
-  {% endif %}
+  </div>
 
-  {% if message %}
-  <h2>{{ message }} </h2>
-  {% endif %}
+  <span class="loader container"></span>
   
 </div>
+<script src="../static/search.js"></script>
 {% endblock %}
