@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request
+from caching import Cache
 import omdb
 import os
 from dotenv import load_dotenv
@@ -6,6 +7,7 @@ load_dotenv()
 
 
 app = Flask(__name__)
+cache = Cache()
 
 API_KEY = os.getenv('API_KEY')
 
@@ -34,8 +36,14 @@ def search_item():
     """searches for movie content"""
     query = request.get_json()
     item = query['value']
+    
+    # check cache for query
+    if item in cache.cached_data:
+        return cache.get(item)
+    
     response = omdb.request(t=item, apikey=API_KEY, timeout=5)
     data = response.json()
+    cache.put(item, data)
     return data
 
 @app.route('/preference', strict_slashes=False)
