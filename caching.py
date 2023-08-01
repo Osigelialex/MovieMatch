@@ -51,7 +51,7 @@ class Cache:
     
     Args:
       key (str): Title of movie
-    """ 
+    """
     if key is None or key not in self.cached_data:
       return None
     

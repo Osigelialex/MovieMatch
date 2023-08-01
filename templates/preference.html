@@ -5,41 +5,20 @@ Preference
 {% endblock %}
 
 {% block content %}
-<div class="container">
-  <h2></h2>
-  <form action = "{{ url_for('home')}}" class="position-absolute top-50 start-50 translate-middle">
-    <h3 class="mb-4 mt-3 text-center">Modify movie Recommendations</h3>
-    <div class="mb-4">
-      <strong><label for="genre" class="form-label">Genre</label></strong>
-      <select class="genre form-select form-select-sm" aria-label=".form-select-sm example">
-        <option selected>Comedy</option>
-        <option value="1">Horror</option>
-        <option value="2">Romance</option>
-        <option value="3">Drama</option>
-        <option value="4">Action</option>
-        <option value="5">Thriller</option>
-      </select>
-    </div>
-    <div class="mb-4">
-      <strong><label for="ageRating" class="form-label">Rating</label></strong>
-      <select class="ageRating form-select form-select-sm" aria-label=".form-select-sm example">
-        <option selected>G</option>
-        <option value="1">PG</option>
-        <option value="2">PG-13</option>
-        <option value="3">R</option>
-      </select>
-    </div>
-    <div class="mb-4">
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-        <label class="form-check-label" for="inlineCheckbox1">Seasonal</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-        <label class="form-check-label" for="inlineCheckbox2">Movie</label>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Apply</button>
-  </form>
-</div>
+<h3 class="mb-4 text-center text-danger">Generate Profile</h3>
+<form action = "{{ url_for('preference')}}" method="POST" class="mx-auto" style="max-width: 540px;">
+  {{ form.hidden_tag() }}
+  {{ form.genre.label(class='form-label') }}
+  <br>
+  {{ form.genre(class='form-select') }}
+  <br>
+  {{ form.rated.label(class='form-label') }}
+  {{ form.rated(class='form-select') }}
+  <br>
+  {{ form.language.label(class='form-label') }}
+  {{ form.language(class='form-select') }}
+  <br>
+  {{ form.submit(class='btn btn-danger') }}
+  <p class="mt-4 text-center">This helps for personalized recommendation</p>
+</form>
 {% endblock %}
