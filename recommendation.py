@@ -23,4 +23,4 @@ def get_trending_movies(api_key):
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
-        return data['results'][:6]
+        return data['results']

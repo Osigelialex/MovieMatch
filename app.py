@@ -120,11 +120,11 @@ def home():
 
     if profile is None:
         data = get_movie_by_params(28, 'en')
-        result = list(filter(lambda x: x['poster_path'] != '',data['results'][:6]))
+        result = list(filter(lambda x: x['poster_path'] != '',data['results']))
     else:
         # fetch movies with posters from api based on user profile
         data = get_movie_by_params(int(profile.genre), profile.language)
-        result = list(filter(lambda x: x['poster_path'] != '',data['results'][:6]))
+        result = list(filter(lambda x: x['poster_path'] != '',data['results']))
     
     # get trending movies with posters from api
     trending = get_trending_movies(os.getenv('API_KEY2'))
