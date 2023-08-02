@@ -16,8 +16,6 @@ load_dotenv()
 # initialize app
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('URI')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('URI')
 app.permanent_session_lifetime = timedelta(minutes=50)
 cache = Cache()
