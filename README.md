@@ -26,7 +26,5 @@ Images
 Home Page:
 ![homepage](https://github.com/Osigelialex/movie-project/assets/97721950/6fa2ad43-87b7-4387-bf65-bdf4afcadce6)
 
-Live at https://moviematch-0kwc.onrender.com/
-
-Tech stack
+**Tech stack**
 HTML5, CSS3, bootstrap, JS, Flask
