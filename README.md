@@ -9,7 +9,7 @@ This Flask-based website uses user profiles to generate personalized movie recom
 * **User profiles:** Users can create a profile by providing information about their favorite movies, genres, and actors. This information is used to generate personalized recommendations.
 * **Movie search:** Users can search for movies by title, genre, actor, or director.
 * **Trending movies:** Users can see a list of the most popular movies.
-* **Suggested movies:** Users can see a list of movies that are similar to the movies they have rated or watched.
+* **Suggested movies:** Users can see a list of movies based on thier generated profile.
 
 **Benefits**
 
