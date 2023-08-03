@@ -1,6 +1,6 @@
 # MovieMatch (MVP)
 
-**Movie Recommendation Website**
+**Movie Website**
 
 This Flask-based website uses user profiles to generate personalized movie recommendations. Users can search for movies, view trending movies, and view suggested movies based on their interests.
 
