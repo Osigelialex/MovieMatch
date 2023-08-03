@@ -21,10 +21,5 @@ This Flask-based website uses user profiles to generate personalized movie recom
 
 This movie recommendation website is a great way to find new movies to watch. It is personalized, convenient, and easy to use.
 
-Images
-
-Home Page:
-![homepage](https://github.com/Osigelialex/movie-project/assets/97721950/6fa2ad43-87b7-4387-bf65-bdf4afcadce6)
-
 **Tech stack**
 HTML5, CSS3, bootstrap, JS, Flask
