@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<h4 class="mb-4">Suggestions for {{ username }}</h4>
+<h3 class="mb- fw-bold">Suggestions for {{ username }}</h3>
 
 <div class="container">
   <div class="row">
@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<h3 class="mt-4 mb-4">Trending Movies</h3>
+<h3 class="mt-4 mb-4 fw-bold">Trending Movies</h3>
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -32,6 +32,23 @@
         {% for trend in trending %}
         <div class="card">
           <img src="http://image.tmdb.org/t/p/w500/{{ trend['poster_path']}}" class="card-img" alt="...">
+        </div>
+        {% endfor %}
+        <!-- Add more cards here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="mt-4 mb-4 fw-bold">Most popular</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="content-container">
+        <!-- Add your content here -->
+        {% for movie in popular %}
+        <div class="card">
+          <img src="http://image.tmdb.org/t/p/w500/{{ movie['poster_path']}}" class="card-img" alt="...">
         </div>
         {% endfor %}
         <!-- Add more cards here -->

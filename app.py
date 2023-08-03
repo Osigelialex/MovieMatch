@@ -1,11 +1,10 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from forms import RegisterForm, LoginForm, recommendationForm
-from recommendation import get_movie_by_params, get_trending_movies
+from recommendation import get_movie_by_params, get_trending_movies, get_popular_movies
 from models import db, User, userProfile
 from datetime import timedelta
 from caching import Cache
 import requests
-import psycopg2
 import os
 from dotenv import load_dotenv
 
@@ -102,10 +101,11 @@ def home():
     username = session['user']
     
     # check cache for data
-    if 'result' in cache.cached_data and 'trending' in cache.cached_data:
+    if 'result' in cache.cached_data and 'trending' in cache.cached_data and 'popular' in cache.cached_data:
         return render_template('home.html', username=username,
                                result=cache.get('result'),
-                               trending=cache.get('trending'))
+                               trending=cache.get('trending'),
+                               popular=cache.get('popular'))
     
     # get user details form db
     user = User.query.filter_by(username=username).first()
@@ -128,11 +128,17 @@ def home():
     trending = get_trending_movies(os.getenv('API_KEY2'))
     trending_movies = list(filter(lambda x: x['poster_path'] != '', trending))
     
+    # get popular movies with posters from api
+    popular = get_popular_movies(os.getenv('API_KEY2'))
+    popular_movies = list(filter(lambda x: x['poster_path'] != '', popular))
+    
     cache.put('result', result)
     cache.put('trending', trending_movies)
+    cache.put('popular', popular_movies)
     return render_template('home.html', username=username,
                            result=result,
-                           trending=trending_movies)
+                           trending=trending_movies,
+                           popular=popular_movies)
 
 
 @app.route('/info/<title>', methods=['GET', 'POST'])
