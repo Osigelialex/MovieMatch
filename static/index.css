@@ -31,17 +31,8 @@ body {
   margin: auto;
 }
 
-.gallery {
-  display: flex;
-  align-items: center;
-  column-gap: 20px;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-}
-
-.gallery_item { 
-  scroll-snap-type: center;
-  min-width: 75%;
+.col-12{
+  overflow:hidden; 
 }
 
 .gallery_image {
