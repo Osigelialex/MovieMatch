@@ -215,8 +215,7 @@ def preference():
         # check if user has generated profile
         profile = userProfile.query.filter_by(user_id=logged_in_user_id).first()
         if profile is None:
-            profile = userProfile(genre=genre,language=language)
-                              user_id=logged_in_user_id)
+            profile = userProfile(genre=genre,language=language,user_id=logged_in_user_id)
             db.session.add(profile)
             db.session.commit()
             flash('Created Successfully')
