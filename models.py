@@ -23,7 +23,6 @@ class userProfile(db.Model):
   
   id = db.Column(db.Integer, primary_key=True)
   genre = db.Column(db.String(100), nullable=False)
-  rated = db.Column(db.String(15), nullable=False)
   language = db.Column(db.String(100), nullable=False)
   created_at = db.Column(db.DateTime, default=datetime.utcnow)
   user_id = db.Column(db.Integer, db.ForeignKey(User.id))
