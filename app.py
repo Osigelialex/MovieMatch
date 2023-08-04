@@ -197,7 +197,6 @@ def preference():
     if 'user' not in session:
         return redirect(url_for('login'))
     genre = None
-    rated = None
     language = None
     form = recommendationForm()
 
@@ -206,7 +205,6 @@ def preference():
         cache.cached_data = {}
 
         genre = form.genre.data
-        rated = form.rated.data
         language = form.language.data
         
         # retrieve user
@@ -217,9 +215,7 @@ def preference():
         # check if user has generated profile
         profile = userProfile.query.filter_by(user_id=logged_in_user_id).first()
         if profile is None:
-            profile = userProfile(genre=genre,
-                              rated=rated,
-                              language=language,
+            profile = userProfile(genre=genre,language=language)
                               user_id=logged_in_user_id)
             db.session.add(profile)
             db.session.commit()
@@ -227,7 +223,6 @@ def preference():
         else:
             # update current user profile
             profile.genre = genre
-            profile.rated = rated
             profile.language = language
             db.session.add(profile)
             db.session.commit()
