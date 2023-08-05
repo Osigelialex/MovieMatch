@@ -219,8 +219,8 @@ def preference():
     return render_template('preference.html',form=form)
 
 @app.errorhandler(500)
-def handle_error():
-    return render_template('error.html')
+def internal_server_error(error):
+    return render_template('error.html'), 500
 
 @app.route('/logout')
 def logout():
