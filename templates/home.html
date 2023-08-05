@@ -4,6 +4,7 @@
 
 {% block styles %}
 <link rel="stylesheet" href="../static/index.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -15,7 +16,7 @@
       <div class="content-container">
         {% for movie in result %}
         <div class="card">
-          <img src="http://image.tmdb.org/t/p/w500/{{ movie['poster_path']}}" class="gallery_image" alt="...">
+          <img src="http://image.tmdb.org/t/p/w500/{{ movie['poster_path']}}" data-id="{{ movie['id'] }}" class="gallery_image" alt="...">
         </div>
         {% endfor %}
       </div>
@@ -40,23 +41,8 @@
   </div>
 </div>
 
-<h3 class="mt-4 mb-4 fw-bold">Most popular</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="content-container">
-        <!-- Add your content here -->
-        {% for movie in popular %}
-        <div class="card">
-          <img src="http://image.tmdb.org/t/p/w500/{{ movie['poster_path']}}" class="card-img" alt="...">
-        </div>
-        {% endfor %}
-        <!-- Add more cards here -->
-      </div>
-    </div>
-  </div>
-</div>
 
 <script src="../static/home.js"></script>
+<script src="../static/movieDetails.js"></script>
 {% endblock %}
 

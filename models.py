@@ -6,17 +6,18 @@ db = SQLAlchemy()
 
 
 class User(db.Model):
-  __tablename__ = "Users"
+  __tablename__ = "users_table"
 
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(255), nullable=False)
   email = db.Column(db.String(200), nullable=False, unique=True)
-  password = db.Column(db.String(200), nullable=False)
+  password = db.Column(db.String(255), nullable=False)
   created_at = db.Column(db.DateTime, default=datetime.utcnow)
   profiles = db.relationship('userProfile', back_populates='user')
   
   def __repr__(self):
-    return f"{self.username} -> {self.password}"
+    return f"{self.username} -> {self.password}"  
+
 
 class userProfile(db.Model):
   __tablename__ = "profile"

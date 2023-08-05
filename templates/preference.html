@@ -5,7 +5,13 @@ Preference
 {% endblock %}
 
 {% block content %}
-<h3 class="mb-4 text-center text-danger">Generate Profile</h3>
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{ message }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+<h3 class="mb-4 mt-4 text-center text-danger">Generate Profile</h3>
 <form action = "{{ url_for('preference')}}" method="POST" class="mx-auto" style="max-width: 540px;">
   {{ form.hidden_tag() }}
   {{ form.genre.label(class='form-label') }}
@@ -16,6 +22,6 @@ Preference
   {{ form.language(class='form-select') }}
   <br>
   {{ form.submit(class='btn btn-danger') }}
-  <p class="mt-4 text-center">This helps for personalized recommendation</p>
+  <p class="mt-4 text-center">This helps for personalized suggestions</p>
 </form>
 {% endblock %}

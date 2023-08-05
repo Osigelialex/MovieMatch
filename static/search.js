@@ -6,22 +6,30 @@ function sendData() {
   result.style.display = 'none';
   const value = document.querySelector('.search-input').value.trim();
   const loader = document.querySelector('.loader');
+  const url = '/search_item';
 
   if (value === '') return;
-
   loader.style.display = 'block';
-  $.ajax({
-      url: '/search_item',
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify({ 'value': value }),
-      success: function(response) {
-          loader.style.display = 'none';
-          displayContent(response);
-      },
-      error: function(error) {
-        loader.style.display = 'none';
+
+  fetch('/search_item', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ 'value': value }),
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
       }
+      return response.json();
+  })
+  .then(response => {
+      loader.style.display = 'none';
+      displayContent(response);
+  })
+  .catch(error => {
+      loader.style.display = 'none';
   });
 }
 

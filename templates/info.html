@@ -1,9 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-  {{ result.original_title %}}
+  {{ movie_data.original_title }}
 {% endblock %}
 
 {% block content %}
-
+  {{ movie_data.overview }}
 {% endblock %}

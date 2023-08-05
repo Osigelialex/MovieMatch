@@ -22,12 +22,3 @@ def get_trending_movies(api_key):
     if response.status_code == 200:
         data = response.json()
         return data['results']
-
-
-def get_popular_movies(api_key):
-    url =f'https://api.themoviedb.org/3/discover/movie?&include_video=false& \
-    language=en-US&page=1&sort_by=popularity.desc&api_key={api_key}'
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return data['results']
