@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session
-from forms import RegisterForm, LoginForm, recommendationForm
-from recommendation import get_movie_by_params, get_trending_movies
+from forms import RegisterForm, LoginForm, profileForm
+from get_movies import get_movie_by_params, get_trending_movies
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, userProfile
 from datetime import timedelta
@@ -129,33 +129,6 @@ def home():
                            result=result,
                            trending=trending_movies)
 
-
-@app.route('/get_info', methods=['POST'])
-def get_movie_info():
-    """Displays movie info"""
-    json_data = request.get_json()
-    
-    if 'id' not in json_data:
-        # TODO: handle case
-        pass
-    
-    movie_id = json_data['id']
-    params = { 'api_key': os.getenv('API_KEY2') }
-    constructed_url = f'https://api.themoviedb.org/3/movie/{movie_id}'
-    response = requests.get(constructed_url, params=params)
-    
-    if response.status_code != 200:
-        return redirect(url_for('display_movie_info', id=''))
-    
-    movie_data = response.json()
-    return redirect(url_for('display_movie_info',  id=movie_id))
-
-
-@app.route('/display_info/<id>')
-def display_movie_info(id):
-    return render_template('info.html', id=id)
-
-
 @app.route('/search')
 def search():
     """show page for movie search"""
@@ -193,7 +166,7 @@ def preference():
         return redirect(url_for('login'))
     genre = None
     language = None
-    form = recommendationForm()
+    form = profileForm()
 
     if form.validate_on_submit():
         cache.cached_data = {}

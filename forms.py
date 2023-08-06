@@ -15,7 +15,7 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators=[DataRequired()])
     submit = SubmitField("Submit")
     
-class recommendationForm(FlaskForm):
+class profileForm(FlaskForm):
     GENRE_CHOICES = [("28", 'Action'),
                      ("12", 'Adventure'),
                      ("16", 'Animation'),

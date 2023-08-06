@@ -10,13 +10,20 @@
 {% block content %}
 <h3 class="mb-4 mt-4 fw-bold">Suggestions for {{ username }}</h3>
 
+<div class="popup-overlay" id="popup">
+  <div class="popup-content p-3 mb-2 bg-dark text-white border border-light">
+    <button type="button" class="btn-close float-end" onclick="closePopup()" aria-label="Close"></button>
+    <div id="popup-movie-info" class="text-center font-monospace"></div>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-12">
       <div class="content-container">
         {% for movie in result %}
         <div class="card">
-          <img src="http://image.tmdb.org/t/p/w500/{{ movie['poster_path']}}" data-id="{{ movie['id'] }}" class="gallery_image" alt="...">
+          <img src="http://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}" data-title="{{ movie['title'] }}" data-overview="{{ movie['overview'] }}" data-id="{{ movie['id'] }}" class="gallery_image" alt="...">
         </div>
         {% endfor %}
       </div>
@@ -30,9 +37,9 @@
     <div class="col-12">
       <div class="content-container">
         <!-- Add your content here -->
-        {% for trend in trending %}
+        {% for movie in trending %}
         <div class="card">
-          <img src="http://image.tmdb.org/t/p/w500/{{ trend['poster_path']}}" class="card-img" alt="...">
+          <img src="http://image.tmdb.org/t/p/w500/{{ movie['poster_path']}}" class="card-img" data-title="{{ movie['title'] }}" data-overview="{{ movie['overview'] }}" data-id="{{ movie['id'] }}" class="gallery_image" alt="..." alt="...">
         </div>
         {% endfor %}
         <!-- Add more cards here -->
@@ -43,6 +50,5 @@
 
 
 <script src="../static/home.js"></script>
-<script src="../static/movieDetails.js"></script>
 {% endblock %}
 
