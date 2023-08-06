@@ -11,7 +11,7 @@ function sendData() {
   if (value === '') return;
   loader.style.display = 'block';
 
-  fetch('/search_item', {
+  fetch(url, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',

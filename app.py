@@ -130,8 +130,8 @@ def home():
                            trending=trending_movies)
 
 
-@app.route('/info', methods=['POST'])
-def display_movie_info():
+@app.route('/get_info', methods=['POST'])
+def get_movie_info():
     """Displays movie info"""
     json_data = request.get_json()
     
@@ -145,10 +145,15 @@ def display_movie_info():
     response = requests.get(constructed_url, params=params)
     
     if response.status_code != 200:
-        return render_template('info.html', id=None)
+        return redirect(url_for('display_movie_info', id=''))
     
     movie_data = response.json()
-    return render_template('info.html', movie_data=movie_data)
+    return redirect(url_for('display_movie_info',  id=movie_id))
+
+
+@app.route('/display_info/<id>')
+def display_movie_info(id):
+    return render_template('info.html', id=id)
 
 
 @app.route('/search')
