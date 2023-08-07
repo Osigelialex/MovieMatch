@@ -182,7 +182,7 @@ def preference():
         if profile is None:
             profile = userProfile(genre=genre,language=language,
                                   user_id=logged_in_user_id)
-
+            profile.user = user
             db.session.add(profile)
             db.session.commit()
             flash('Created Successfully')
