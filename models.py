@@ -26,8 +26,8 @@ class userProfile(db.Model):
   genre = db.Column(db.String(100), nullable=False)
   language = db.Column(db.String(100), nullable=False)
   created_at = db.Column(db.DateTime, default=datetime.utcnow)
-  user_id = db.Column(db.Integer, db.ForeignKey(User.id))
+  user_id = db.Column(db.Integer, db.ForeignKey('users_table.id'))
   user = db.relationship('User', back_populates='profiles')
 
   def __repr__(self):
-    return f"{self.genre} {self.rated} {self.language} {self.location}"
+    return f"{self.genre} {self.language} {self.location}"

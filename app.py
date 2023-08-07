@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, userProfile
 from datetime import timedelta
 from caching import Cache
+import psycopg2
 import requests
 import os
 from dotenv import load_dotenv
@@ -13,6 +14,7 @@ load_dotenv()
 # initialize app
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('URI')
 app.permanent_session_lifetime = timedelta(days=1)
 API_KEY = os.getenv('API_KEY')
@@ -26,8 +28,8 @@ with app.app_context():
 @app.route('/', methods=['GET', 'POST'])
 def login():
     """Renders login page to the user"""
-    if 'user' in session:
-        return redirect(url_for('home', username=session['user']))
+    # if 'user' in session:
+    #     return redirect(url_for('home', username=session['user']))
 
     form = LoginForm()
     if form.validate_on_submit():
