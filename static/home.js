@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const overview = this.querySelector('img').getAttribute('data-overview');
       const maxLength = 250;
       const truncatedOverview = overview.length > maxLength ? overview.substring(0, maxLength) + '...' : overview;
-      const rating = this.querySelector('img').getAttribute('data-vote_average')
+      const rating = this.querySelector('img').getAttribute('data-vote_average');
       const poster = this.querySelector('img').getAttribute('data-poster')
       showPopup(title, truncatedOverview, rating, poster);
     });
