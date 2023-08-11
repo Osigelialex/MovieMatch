@@ -42,19 +42,26 @@ document.addEventListener('DOMContentLoaded', function () {
     card.addEventListener('click', function () {
       const title = this.querySelector('img').getAttribute('data-title');
       const overview = this.querySelector('img').getAttribute('data-overview');
-      showPopup(title, overview);
+      const maxLength = 250;
+      const truncatedOverview = overview.length > maxLength ? overview.substring(0, maxLength) + '...' : overview;
+      const rating = this.querySelector('img').getAttribute('data-vote_average')
+      const poster = this.querySelector('img').getAttribute('data-poster')
+      showPopup(title, truncatedOverview, rating, poster);
     });
   });
 });
 
-function showPopup(title, overview) {
+function showPopup(title, overview, rating, poster) {
   const popup = document.getElementById('popup');
   const popupMovieInfo = document.getElementById('popup-movie-info');
-  overview = overview ? overview : `No plot for ${title}`
+  const poster_path = `http://image.tmdb.org/t/p/w500/${poster}`;
+  overview = overview ? overview : `No plot for ${title}`;
   popupMovieInfo.innerHTML = `
-    <h1 class='text-danger mb-4'>${title}</h1>
-    <p class='lead'>Overview</p>
-    <p class='mt-4'>${overview}</p>
+    <img src='${poster_path}' class='img-thumbnail mb-4'>
+    <h5 class='mb-2'>${title}</h5>
+    <p class='fw-bold'>Overview</p>
+    <p class='mt-2'>${overview}</p>
+    <p class='mt-2 lead'>Rating: ${rating}</p>
   `;
   popup.style.display = 'block';
 }

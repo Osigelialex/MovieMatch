@@ -11,7 +11,7 @@
 <h3 class="mb-4 mt-4 fw-bold">Suggestions for {{ username }}</h3>
 
 <div class="popup-overlay" id="popup">
-  <div class="popup-content p-3 mb-2 bg-dark text-white border border-light">
+  <div class="popup-content p-3 mb-2 bg-light text-dark">
     <button type="button" class="btn-close float-end" onclick="closePopup()" aria-label="Close"></button>
     <div id="popup-movie-info" class="text-center font-monospace"></div>
   </div>
@@ -23,7 +23,7 @@
       <div class="content-container">
         {% for movie in result %}
         <div class="card">
-          <img src="http://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}" data-title="{{ movie['title'] }}" data-overview="{{ movie['overview'] }}" data-id="{{ movie['id'] }}" class="gallery_image" alt="...">
+          <img src="http://image.tmdb.org/t/p/w500/{{ movie['poster_path'] }}" data-title="{{ movie['title'] }}" data-overview="{{ movie['overview'] }}" data-id="{{ movie['id'] }}" data-vote_average="{{ movie['vote_average'] }}" data-poster="{{ movie['poster_path'] }}" class="gallery_image" alt="...">
         </div>
         {% endfor %}
       </div>
