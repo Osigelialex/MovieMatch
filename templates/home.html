@@ -36,13 +36,11 @@
   <div class="row">
     <div class="col-12">
       <div class="content-container">
-        <!-- Add your content here -->
         {% for movie in trending %}
         <div class="card">
-          <img src="http://image.tmdb.org/t/p/w500/{{ movie['poster_path']}}" class="card-img" data-title="{{ movie['title'] }}" data-overview="{{ movie['overview'] }}" data-id="{{ movie['id'] }}" class="gallery_image" alt="..." alt="...">
+          <img src="http://image.tmdb.org/t/p/w500/{{ movie['poster_path']}}" class="card-img" data-title="{{ movie['title'] }}" data-overview="{{ movie['overview'] }}" data-id="{{ movie['id'] }}" class="gallery_image" alt="...">
         </div>
         {% endfor %}
-        <!-- Add more cards here -->
       </div>
     </div>
   </div>
