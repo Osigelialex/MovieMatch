@@ -36,20 +36,28 @@ sliders.forEach((slider) => {
 document.addEventListener('DOMContentLoaded', function () {
   const cards = document.querySelectorAll('.card');
 
-  cards.forEach((card) => {
-    card.addEventListener('click', function (e) {
-      // Check if the click event was due to dragging
-      if (mouseDown) {
-        return;
-      }
+  let isDragging = false; // Flag to track dragging
 
-      const title = this.querySelector('img').getAttribute('data-title');
-      const overview = this.querySelector('img').getAttribute('data-overview');
-      const maxLength = 250;
-      const truncatedOverview = overview.length > maxLength ? overview.substring(0, maxLength) + '...' : overview;
-      const rating = this.querySelector('img').getAttribute('data-vote_average');
-      const poster = this.querySelector('img').getAttribute('data-poster');
-      showPopup(title, truncatedOverview, rating, poster);
+  cards.forEach((card) => {
+    card.addEventListener('mousedown', () => {
+      isDragging = false;
+    });
+
+    card.addEventListener('mousemove', () => {
+      isDragging = true;
+    });
+
+    card.addEventListener('mouseup', (e) => {
+      if (!isDragging) {
+        const title = card.querySelector('img').getAttribute('data-title');
+        const overview = card.querySelector('img').getAttribute('data-overview');
+        const maxLength = 250;
+        const truncatedOverview = overview.length > maxLength ? overview.substring(0, maxLength) + '...' : overview;
+        const rating = card.querySelector('img').getAttribute('data-vote_average');
+        const poster = card.querySelector('img').getAttribute('data-poster');
+        showPopup(title, truncatedOverview, rating, poster);
+      }
+      isDragging = false;
     });
   });
 });
