@@ -2,7 +2,7 @@
 
 **Movie Website**
 
-This Flask-based website uses user profiles to generate personalized movie recommendations. Users can search for movies, view trending movies, and view suggested movies based on their interests.
+This Flask-based website uses user profiles to generate personalized movie suggestions. Users can search for movies, view trending movies, and view suggested movies based on their interests.
 
 **Features**
 
@@ -13,13 +13,12 @@ This Flask-based website uses user profiles to generate personalized movie recom
 
 **Benefits**
 
-* **Personalized recommendations:** Users can find movies that they are more likely to enjoy based on their interests.
 * **Convenient:** Users can search for movies, view trending movies, and view suggested movies all in one place.
 * **Easy to use:** The website is easy to navigate and use.
 
 **Conclusion**
 
-This movie recommendation website is a great way to find new movies to watch. It is personalized, convenient, and easy to use.
+This movie website is a great way to find new movies to watch. It is personalized, convenient, and easy to use.
 
 **Tech stack**
 HTML5, CSS3, bootstrap, JS, Flask
