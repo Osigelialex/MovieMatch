@@ -22,7 +22,6 @@ const handleSliderMove = (e) => {
 };
 
 sliders.forEach((slider) => {
-  // Add the event listeners to each slider for both touch and mouse events
   slider.addEventListener('mousedown', startDragging, false);
   slider.addEventListener('mouseup', stopDragging, false);
   slider.addEventListener('mouseleave', stopDragging, false);
@@ -34,18 +33,22 @@ sliders.forEach((slider) => {
   slider.addEventListener('touchmove', handleSliderMove);
 });
 
-
 document.addEventListener('DOMContentLoaded', function () {
   const cards = document.querySelectorAll('.card');
 
   cards.forEach((card) => {
-    card.addEventListener('click', function () {
+    card.addEventListener('click', function (e) {
+      // Check if the click event was due to dragging
+      if (mouseDown) {
+        return;
+      }
+
       const title = this.querySelector('img').getAttribute('data-title');
       const overview = this.querySelector('img').getAttribute('data-overview');
       const maxLength = 250;
       const truncatedOverview = overview.length > maxLength ? overview.substring(0, maxLength) + '...' : overview;
       const rating = this.querySelector('img').getAttribute('data-vote_average');
-      const poster = this.querySelector('img').getAttribute('data-poster')
+      const poster = this.querySelector('img').getAttribute('data-poster');
       showPopup(title, truncatedOverview, rating, poster);
     });
   });
