@@ -14,7 +14,7 @@ class User(db.Model):
   password = db.Column(db.String(255), nullable=False)
   created_at = db.Column(db.DateTime, default=datetime.utcnow)
   profiles = db.relationship('userProfile', back_populates='user')
-  
+
   def __repr__(self):
     return f"{self.username} -> {self.password}"  
 

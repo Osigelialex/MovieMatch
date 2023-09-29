@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash, session
+from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify
 from forms import RegisterForm, LoginForm, profileForm
 from get_movies import get_movie_by_params, get_trending_movies
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -28,8 +28,8 @@ with app.app_context():
 @app.route('/', methods=['GET', 'POST'])
 def login():
     """Renders login page to the user"""
-    # if 'user' in session:
-    #     return redirect(url_for('home', username=session['user']))
+    if 'user' in session:
+        return redirect(url_for('home', username=session['user']))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -102,7 +102,8 @@ def home():
     if 'result' in cache.cached_data and 'trending' in cache.cached_data:
         return render_template('home.html', username=username,
                                result=cache.get('result'),
-                               trending=cache.get('trending'))
+                               trending=cache.get('trending'),
+                               key=os.getenv('API_KEY2'))
     
     user = User.query.filter_by(username=username).first()
     profile = userProfile.query.filter_by(user_id=user.id).first()
@@ -129,7 +130,8 @@ def home():
     cache.put('trending', trending_movies)
     return render_template('home.html', username=username,
                            result=result,
-                           trending=trending_movies)
+                           trending=trending_movies,
+                           key=os.getenv('API_KEY2'))
 
 @app.route('/search')
 def search():
@@ -145,7 +147,7 @@ def search_item():
     base_url = f'https://api.themoviedb.org/3/search/movie'
     query = request.get_json()
     item = query['value']
-    
+
     # check cache for query
     if item in cache.cached_data:
         return cache.get(item)
@@ -198,15 +200,18 @@ def preference():
 
     return render_template('preference.html',form=form)
 
+
 @app.errorhandler(500)
 def internal_server_error(error):
     return render_template('error.html'), 500
+
 
 @app.route('/logout')
 def logout():
     """Logs user out of website"""
     session.pop('user', None)
     return redirect(url_for('login'))
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
