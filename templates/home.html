@@ -117,7 +117,7 @@ async function getMovieTrailer(movieId) {
   const response = await fetch(url);
   const data = await response.json();
   console.log(data.results[0].key);
-  return data.results[0].key;
+  return data.results[1].key;
 }
 
 async function showPopup(movieId, title, overview, rating) {
@@ -126,13 +126,17 @@ async function showPopup(movieId, title, overview, rating) {
   const popupMovieInfo = document.getElementById('popup-movie-info');
   overview = overview ? overview : `No plot for ${title}`;
   popupMovieInfo.innerHTML = `
-    <iframe width="350" height="250"
-      src="https://www.youtube.com/embed/${movieTrailer}?controls=1">
-    </iframe>
-    <h5 class='mb-2'>${title}</h5>
-    <p class='fw-bold'>Overview</p>
-    <p class='mt-2'>${overview}</p>
-    <p class='mt-2 lead'>Rating: ${rating}</p>
+      <div class="card">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${movieTrailer}?controls=1" allowfullscreen></iframe>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">${title}</h5>
+        <p class="card-text fw-bold">Overview</p>
+        <p class="card-text">${overview}</p>
+        <p class="card-text lead">Rating: ${rating}</p>
+      </div>
+    </div>
   `;
   popup.style.display = 'block';
 }
