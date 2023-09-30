@@ -11,8 +11,7 @@
 <h3 class="mb-4 mt-4 fw-bold">Suggestions for {{ username }}</h3>
 
 <div class="popup-overlay" id="popup">
-  <div class="popup-content p-3 mb-2 bg-light text-dark">
-    <button type="button" class="btn-close float-end" onclick="closePopup()" aria-label="Close"></button>
+  <div class="popup-content pt-2 pb-2 mb-2 bg-secondary text-white text-center" id="popup-content">
     <div id="popup-movie-info" class="text-center font-monospace"></div>
   </div>
 </div>
@@ -116,27 +115,24 @@ async function getMovieTrailer(movieId) {
   const url = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${key}`;
   const response = await fetch(url);
   const data = await response.json();
-  console.log(data.results[0].key);
   return data.results[1].key;
 }
 
 async function showPopup(movieId, title, overview, rating) {
   const movieTrailer = await getMovieTrailer(movieId);
   const popup = document.getElementById('popup');
-  const popupMovieInfo = document.getElementById('popup-movie-info');
+  popup.addEventListener('click', closePopup);
+  const popupContent = document.getElementById('popup-content');
   overview = overview ? overview : `No plot for ${title}`;
-  popupMovieInfo.innerHTML = `
-      <div class="card">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/${movieTrailer}?controls=1" allowfullscreen></iframe>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">${title}</h5>
-        <p class="card-text fw-bold">Overview</p>
-        <p class="card-text">${overview}</p>
-        <p class="card-text lead">Rating: ${rating}</p>
-      </div>
-    </div>
+  popupContent.innerHTML = `
+        <div class="ratio ratio-16x9">
+        <iframe src="https://www.youtube.com/embed/${movieTrailer}?rel=0&controls=1" title="${title}" allowfullscreen></iframe>
+        </div>
+
+        <h5 class='mb-2'>${title}</h5>
+        <p class='fw-bold'>Overview</p>
+        <p class='mt-2'>${overview}</p>
+        <p class='mt-2 lead'>Rating: ${rating}</p>
   `;
   popup.style.display = 'block';
 }
@@ -148,4 +144,3 @@ function closePopup() {
 
 </script>
 {% endblock %}
-
