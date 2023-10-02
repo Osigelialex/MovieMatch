@@ -125,7 +125,7 @@ async function showPopup(movieId, title, overview, rating) {
   const popupContent = document.getElementById('popup-content');
   overview = overview ? overview : `No plot for ${title}`;
   popupContent.innerHTML = `
-        <div class="ratio ratio-16x9">
+        <div class="ratio ratio-4x3">
         <iframe src="https://www.youtube.com/embed/${movieTrailer}?rel=0&controls=1" title="${title}" allowfullscreen></iframe>
         </div>
 
