@@ -115,7 +115,7 @@ async function getMovieTrailer(movieId) {
   const url = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${key}`;
   const response = await fetch(url);
   const data = await response.json();
-  return data.results[1].key;
+  return data.results[0].key;
 }
 
 async function showPopup(movieId, title, overview, rating) {
